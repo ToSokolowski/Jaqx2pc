@@ -10,7 +10,6 @@ usage() {
   echo "Options:"
   echo "  -v        Verbose: Print a message for each file being processed."
   echo "  -vv       Very Verbose: Also show the output from xournalpp itself."
-  exit 1
   echo "Arguments:"
   echo "  <source_directory>      The directory containing the .xopp files."
   echo "  <destination_directory> The output directory. Must not exist, or must be empty."
@@ -25,7 +24,7 @@ while [[ "${1:-}" =~ ^- ]]; do
     -h | --help) usage ;;
     *) echo "Error: Unknown option '$1'" >&2; usage ;;
   esac
-donee
+done
 
 if [ "$#" -ne 2 ]; then
   usage
