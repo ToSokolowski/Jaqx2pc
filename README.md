@@ -1,4 +1,6 @@
-# jaqx2pc
+# Jaqx2pc
+
+Just another quick .xopp to .pdf Converter
 
 Batch exports `.xopp` files to `.pdf`.
 
