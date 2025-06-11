@@ -19,7 +19,7 @@ nix run github:ToSokolowski/jaqx2pc -- [options] <source> <destination>
 nix run github:ToSokolowski/jaqx2pc -- ./source_dir ./output_dir
 
 # Verbose
-nix run github:ToSokolowski/jaqx2pc -- -vv ./source_dir ./output_dir
+nix run github:ToSokolowski/jaqx2pc -- -v ./source_dir ./output_dir
 
 # Very verbose
 nix run github:ToSokolowski/jaqx2pc -- -vv ./source_dir ./output_dir
@@ -42,7 +42,7 @@ First, clone the repository to get the `process.sh` locally, and make the script
 
 ```bash
 git clone https://github.com/ToSokolowski/jaqx2pc.git
-cd xopp-exporter
+cd jaqx2pc
 chmod +x process.sh
 
 ```
