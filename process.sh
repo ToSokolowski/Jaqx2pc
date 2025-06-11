@@ -47,21 +47,17 @@ echo "jaqx2pc: Starting export process..."
 echo "= Source:      $SOURCE_DIR_ABS"
 echo "= Destination: $DEST_DIR_ABS"
 
-shopt -s nullglob
-processed_count=0
 
-for file_path in "$SOURCE_DIR_ABS"/*.xopp; do
+find "$SOURCE_DIR_ABS" -maxdepth 1 -type f -name '*.xopp' -print0 | while IFS= read -r -d '' file_path; do
   file_name="${file_path##*/}"
   base_name="${file_name%.*}"
 
-  echo "   -> Exporting '$file_name'..."
+  echo "- Exporting '$file_name'..."
   xournalpp "$file_path" -p "$DEST_DIR_ABS/$base_name.pdf"
-  ((processed_count++))
 done
 
-shopt -u nullglob
-
-if [ $processed_count -eq 0 ]; then
+processed_count=$(find "$SOURCE_DIR_ABS" -maxdepth 1 -type f -name '*.xopp' | wc -l)
+if [ "$processed_count" -eq 0 ]; then
     echo "- No .xopp files found in '$SOURCE_DIR_ABS'."
 else
     echo "- Done. Processed $processed_count files."
