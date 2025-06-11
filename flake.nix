@@ -5,7 +5,7 @@
 
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
     {
@@ -14,9 +14,11 @@
           pkgs = nixpkgs.legacyPackages.${system};
           
           export-script = pkgs.writeShellApplication {
-            name = "xopp-exporter";
+            name = "jaqx2pc";
 
-            runtimeInputs = with pkgs; [ bash coreutils xournalpp ];
+            runtimeInputs = with pkgs; [
+              bash coreutils findutils xournalpp
+            ];
 
             text = builtins.readFile ./process.sh;
           };
@@ -24,7 +26,7 @@
         {
           default = {
             type = "app";
-            program = "${export-script}/bin/xopp-exporter";
+            program = "${export-script}/bin/jaqx2pc";
           };
         });
     };
